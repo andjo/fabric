@@ -63,12 +63,13 @@ func (o *PatternsEntity) applyVariables(
 
 	// Ensure pattern has an {{input}} placeholder
 	// If not present, append it on a new line
-	if !strings.Contains(pattern.Pattern, "{{input}}") {
-		if !strings.HasSuffix(pattern.Pattern, "\n") {
-			pattern.Pattern += "\n"
-		}
-		pattern.Pattern += "{{input}}"
-	}
+	//  Workaround for https://github.com/danielmiessler/fabric/issues/1203
+	// if !strings.Contains(pattern.Pattern, "{{input}}") {
+	// 	if !strings.HasSuffix(pattern.Pattern, "\n") {
+	// 		pattern.Pattern += "\n"
+	// 	}
+	// 	pattern.Pattern += "{{input}}"
+	// }
 
 	// Temporarily replace {{input}} with a sentinel token to protect it
 	// from recursive variable resolution
